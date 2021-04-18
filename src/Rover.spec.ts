@@ -249,5 +249,12 @@ describe('Rover', () => {
 
       expect(rover.execute(commandString)).toEqual('(0, 1) EAST');
     });
+
+    it('should not execute invalid commands', () => {
+      const rover = new Rover(0, 0, Direction.NORTH);
+      const commandString = '&%Kun0F';
+
+      expect(rover.execute(commandString)).toEqual('(0, 1) NORTH');
+    });
   });
 });

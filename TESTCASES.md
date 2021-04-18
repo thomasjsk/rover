@@ -20,7 +20,7 @@
         - WEST(0,0) + B => WEST(1, 0) #
     - execute command string
         - should report position after execution #
-        - should execute only valid command
+        - should execute only valid command #
         - should execute single move command #
         - should execute single turn command #
         - should execute multiple multiple commands #
