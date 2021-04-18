@@ -9,10 +9,6 @@ export class RoverService {
     return this._rover;
   }
 
-  getHello(): string {
-    return 'Hello World!';
-  }
-
   land(x: number, y: number, direction: Direction) {
     if (!this.rover) {
       this._rover = new Rover(x, y, direction);

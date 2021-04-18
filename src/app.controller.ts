@@ -1,15 +1,10 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { RoverService } from './rover.service';
 import { Direction } from './models';
 
 @Controller()
 export class AppController {
   constructor(private readonly roverService: RoverService) {}
-
-  @Get()
-  getHello(): string {
-    return this.roverService.getHello();
-  }
 
   @Post('land')
   land(
