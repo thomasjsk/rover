@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, HttpException, Post } from '@nestjs/common';
 import { RoverService } from './rover.service';
 import { Direction } from './models';
 
@@ -15,5 +15,10 @@ export class AppController {
     const rover = this.roverService.land(x, y, direction);
 
     return `Rover landed on (${rover.x}, ${rover.y}) ${rover.direction}`;
+  }
+
+  @Post('execute')
+  execute(@Body() command: string): string | HttpException {
+    return this.roverService.execute(command);
   }
 }

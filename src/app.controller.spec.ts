@@ -22,4 +22,12 @@ describe('AppController', () => {
       );
     });
   });
+
+  describe('POST /execute', () => {
+    it('should return exception if rover has not landed yet', () => {
+      expect(() => {
+        appController.execute('FFRBL');
+      }).toThrow();
+    });
+  });
 });

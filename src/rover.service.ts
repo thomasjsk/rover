@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { Direction, Rover } from './models';
 
 @Injectable()
@@ -17,7 +17,11 @@ export class RoverService {
     return this.rover;
   }
 
-  execute(commandString: string): string {
+  execute(commandString: string): string | HttpException {
+    if (!this.rover) {
+      throw new HttpException('Rover not landed yet!', 500);
+    }
+
     return this.rover.execute(commandString);
   }
 }
