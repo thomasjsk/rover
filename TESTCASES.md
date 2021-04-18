@@ -1,11 +1,11 @@
 - Rover
     - should land on given coordination
     - should change direction
-        - NORTH + R => EAST 
-        - NORTH + L => WEST 
-        - SOUTH + R => WEST 
-        - SOUTH + L => EAST 
-        - EAST + R => SOUTH 
+        - NORTH + R => EAST #
+        - NORTH + L => WEST #
+        - SOUTH + R => WEST #
+        - SOUTH + L => EAST #
+        - EAST + R => SOUTH #
         - EAST + L => NORTH 
         - WEST + R => NORTH 
         - WEST + L => NORTH
