@@ -115,7 +115,7 @@ describe('Rover', () => {
           initialDirection,
         );
 
-        rover.move(moveDirection);
+        rover.execute(moveDirection);
 
         expect(rover.x).toEqual(result.x);
         expect(rover.y).toEqual(result.y);

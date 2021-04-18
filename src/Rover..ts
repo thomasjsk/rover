@@ -53,7 +53,7 @@ export class Rover {
       ];
   }
 
-  public move(moveDirection: Move): void {
+  private move(moveDirection: Move): void {
     const move = {
       [Direction.NORTH]: { axis: Axis.Y, modifier: +1 },
       [Direction.SOUTH]: { axis: Axis.Y, modifier: -1 },
