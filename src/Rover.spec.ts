@@ -54,16 +54,15 @@ class Rover {
   }
 
   public move(moveDirection: Move): void {
-    const movingRules = {
+    const move = {
       [Direction.NORTH]: { axis: Axis.Y, modifier: +1 },
       [Direction.SOUTH]: { axis: Axis.Y, modifier: -1 },
       [Direction.EAST]: { axis: Axis.X, modifier: +1 },
       [Direction.WEST]: { axis: Axis.X, modifier: -1 },
-    };
+    }[this.direction];
     const offset = { [Move.F]: +1, [Move.B]: -1 }[moveDirection];
 
-    const rule = movingRules[this.direction];
-    this[rule.axis] = this[rule.axis] + offset * rule.modifier;
+    this[move.axis] = this[move.axis] + offset * move.modifier;
   }
 }
 
