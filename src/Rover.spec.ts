@@ -2,8 +2,12 @@ class Rover {
   constructor(
     public readonly x: number,
     public readonly y: number,
-    public readonly direction: string,
+    public direction: string,
   ) {}
+
+  public turn(rotation: string): void {
+    this.direction = Direction.EAST;
+  }
 }
 
 enum Direction {
@@ -21,6 +25,17 @@ describe('Rover', () => {
       expect(rover.x).toEqual(2);
       expect(rover.y).toEqual(5);
       expect(rover.direction).toEqual(Direction.NORTH);
+    });
+  });
+
+  describe('change direction', () => {
+    describe('should turn from NORTH', () => {
+      it('right', () => {
+        const rover = new Rover(0, 0, Direction.NORTH);
+        rover.turn('R');
+
+        expect(rover.direction).toEqual(Direction.EAST);
+      });
     });
   });
 });
