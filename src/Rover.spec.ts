@@ -2,7 +2,7 @@ class Rover {
   constructor(
     public readonly x: number,
     public readonly y: number,
-    public direction: string,
+    public direction: Direction,
   ) {}
 
   public turn(rotation: Rotation): void {
