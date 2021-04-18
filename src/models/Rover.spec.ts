@@ -1,7 +1,5 @@
-import { Rover } from './Rover.';
-import { Rotation } from './Rotation';
-import { Direction } from './Direction';
-import { Move } from './Move';
+import { Direction, Move, Rotation } from './';
+import { Rover } from './Rover';
 
 describe('Rover', () => {
   describe('land', () => {

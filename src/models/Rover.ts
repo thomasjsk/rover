@@ -1,8 +1,4 @@
-import { Coordinate } from "./models";
-import { Rotation } from "./Rotation";
-import { Direction } from "./Direction";
-import { Move } from "./Move";
-import { Axis } from "./Axis";
+import { Axis, Coordinate, Direction, Move, Rotation } from './';
 
 export class Rover {
   private _x: number;
@@ -129,4 +125,3 @@ export class Rover {
     };
   }
 }
-
