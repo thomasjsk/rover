@@ -82,11 +82,7 @@ export class Rover {
     if (moveCmd) {
       const newPosition = this.move(moveCmd);
 
-      if (
-        this.obstacles.find(
-          ([x, y]) => x === newPosition.x && y === newPosition.y,
-        )
-      ) {
+      if (this.hasObstacle(newPosition)) {
         return `(${this.x}, ${this.y}) ${this.direction} STOPPED`;
       }
 
@@ -109,6 +105,12 @@ export class Rover {
     const commands = commandString.split('');
 
     return this.executeCommand(0, commands);
+  }
+
+  private hasObstacle(position: { x: number; y: number }): boolean {
+    return Boolean(
+      this.obstacles.find(([x, y]) => position.x === x && position.y === y),
+    );
   }
 }
 
