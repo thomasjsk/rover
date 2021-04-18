@@ -56,6 +56,7 @@ class Rover {
   public move(moveDirection: Move): void {
     const movingRules = {
       [Direction.NORTH]: { axis: Axis.Y, modifier: +1 },
+      [Direction.SOUTH]: { axis: Axis.Y, modifier: -1 },
       [Direction.WEST]: { axis: Axis.X, modifier: -1 },
     };
     const offset = { [Move.F]: +1, [Move.B]: -1 }[moveDirection];
@@ -173,6 +174,11 @@ describe('Rover', () => {
         initialDirection: Direction.WEST,
         moveDirection: Move.B,
         result: { x: 1, y: 0 },
+      },
+      {
+        initialDirection: Direction.SOUTH,
+        moveDirection: Move.F,
+        result: { x: 0, y: -1 },
       },
     ].forEach(({ initialDirection, moveDirection, result }) => {
       it(`should move ${moveDirection} facing ${initialDirection}`, () => {
