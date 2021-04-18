@@ -1,9 +1,17 @@
 class Rover {
-  constructor(
-    public x: number,
-    public y: number,
-    public direction: Direction,
-  ) {}
+  private _x: number;
+
+  constructor(x: number, public y: number, public direction: Direction) {
+    this.x = x;
+  }
+
+  set x(value: number) {
+    this._x = value;
+  }
+
+  get x() {
+    return this._x;
+  }
 
   public turn(rotation: Rotation): void {
     const directions: Direction[] = [
