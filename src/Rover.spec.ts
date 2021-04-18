@@ -1,8 +1,10 @@
 class Rover {
   private _x: number;
+  private _y: number;
 
-  constructor(x: number, public y: number, public direction: Direction) {
+  constructor(x: number, y: number, public direction: Direction) {
     this.x = x;
+    this.y = y;
   }
 
   set x(value: number) {
@@ -11,6 +13,14 @@ class Rover {
 
   get x() {
     return this._x;
+  }
+
+  set y(value: number) {
+    this._y = value;
+  }
+
+  get y() {
+    return this._y;
   }
 
   public turn(rotation: Rotation): void {
