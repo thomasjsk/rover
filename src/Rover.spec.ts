@@ -6,26 +6,23 @@ class Rover {
   ) {}
 
   public turn(rotation: Rotation): void {
-    const rotations = {
-      [Direction.NORTH]: {
-        [Rotation.R]: Direction.EAST,
-        [Rotation.L]: Direction.WEST,
-      },
-      [Direction.SOUTH]: {
-        [Rotation.R]: Direction.WEST,
-        [Rotation.L]: Direction.EAST,
-      },
-      [Direction.EAST]: {
-        [Rotation.R]: Direction.SOUTH,
-        [Rotation.L]: Direction.NORTH,
-      },
-      [Direction.WEST]: {
-        [Rotation.R]: Direction.NORTH,
-        [Rotation.L]: Direction.SOUTH,
-      },
-    };
+    const directions: Direction[] = [
+      Direction.NORTH,
+      Direction.EAST,
+      Direction.SOUTH,
+      Direction.WEST,
+    ];
 
-    this.direction = rotations[this.direction][rotation];
+    const offset =
+      {
+        [Rotation.R]: +1,
+        [Rotation.L]: -1,
+      }[rotation] + directions.length;
+
+    this.direction =
+      directions[
+        (directions.indexOf(this.direction) + offset) % directions.length
+      ];
   }
 }
 
