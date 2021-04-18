@@ -29,4 +29,11 @@ describe('RoverService', () => {
     expect(service.rover.y).toEqual(2);
     expect(service.rover.direction).toEqual(Direction.NORTH);
   });
+
+  it('should execute command string on rover', () => {
+    const commandString = 'FFR';
+    service.land(5, 8, Direction.WEST);
+
+    expect(service.execute(commandString)).toEqual('(3, 8) NORTH');
+  });
 });

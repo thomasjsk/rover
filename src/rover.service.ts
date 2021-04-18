@@ -16,4 +16,8 @@ export class RoverService {
 
     return this.rover;
   }
+
+  execute(commandString: string): string {
+    return this.rover.execute(commandString);
+  }
 }
