@@ -56,7 +56,7 @@ describe('Rover', () => {
     ].forEach((testCase) => {
       it(`should turn from ${testCase.initialDirection} -> ${testCase.turn}`, () => {
         const simpleRover = new Rover(0, 0, testCase.initialDirection);
-        simpleRover.turn(testCase.turn);
+        simpleRover.execute(testCase.turn);
 
         expect(simpleRover.direction).toEqual(testCase.result);
       });

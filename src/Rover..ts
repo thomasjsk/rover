@@ -33,7 +33,7 @@ export class Rover {
     return this._direction;
   }
 
-  public turn(rotation: Rotation): void {
+  private turn(rotation: Rotation): void {
     const directions: Direction[] = [
       Direction.NORTH,
       Direction.EAST,
