@@ -7,7 +7,7 @@
         - SOUTH + L => EAST #
         - EAST + R => SOUTH #
         - EAST + L => NORTH #
-        - WEST + R => NORTH 
+        - WEST + R => NORTH #
         - WEST + L => NORTH
     - should move
         - NORTH(0,0) + F => NORTH(0, 1)
