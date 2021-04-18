@@ -6,7 +6,11 @@ class Rover {
   ) {}
 
   public turn(rotation: string): void {
-    this.direction = Direction.EAST;
+    if (rotation === 'R') {
+      this.direction = Direction.EAST;
+    } else {
+      this.direction = Direction.WEST;
+    }
   }
 }
 
@@ -35,6 +39,13 @@ describe('Rover', () => {
         rover.turn('R');
 
         expect(rover.direction).toEqual(Direction.EAST);
+      });
+
+      it('right', () => {
+        const rover = new Rover(0, 0, Direction.NORTH);
+        rover.turn('L');
+
+        expect(rover.direction).toEqual(Direction.WEST);
       });
     });
   });
