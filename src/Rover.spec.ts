@@ -21,6 +21,7 @@ class Rover {
       },
       [Direction.WEST]: {
         [Rotation.R]: Direction.NORTH,
+        [Rotation.L]: Direction.SOUTH,
       },
     };
 
@@ -59,6 +60,7 @@ describe('Rover', () => {
     { initial: Direction.EAST, turn: Rotation.R, result: Direction.SOUTH },
     { initial: Direction.EAST, turn: Rotation.L, result: Direction.NORTH },
     { initial: Direction.WEST, turn: Rotation.R, result: Direction.NORTH },
+    { initial: Direction.WEST, turn: Rotation.L, result: Direction.SOUTH },
   ];
 
   describe('change direction', () => {
