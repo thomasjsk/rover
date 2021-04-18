@@ -6,7 +6,7 @@
         - SOUTH + R => WEST #
         - SOUTH + L => EAST #
         - EAST + R => SOUTH #
-        - EAST + L => NORTH 
+        - EAST + L => NORTH #
         - WEST + R => NORTH 
         - WEST + L => NORTH
     - should move
