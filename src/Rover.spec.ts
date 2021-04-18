@@ -64,6 +64,12 @@ class Rover {
 
     this[move.axis] = this[move.axis] + offset * move.modifier;
   }
+
+  public execute(commandString: string): string {
+    this.move(Move[commandString]);
+
+    return `(${this.x}, ${this.y}) ${this.direction}`;
+  }
 }
 
 enum Rotation {
@@ -208,6 +214,15 @@ describe('Rover', () => {
         expect(rover.x).toEqual(result.x);
         expect(rover.y).toEqual(result.y);
       });
+    });
+  });
+
+  describe('execute', () => {
+    it('should execute single move command', () => {
+      const rover = new Rover(0, 0, Direction.NORTH);
+      const commandString = 'F';
+
+      expect(rover.execute(commandString)).toEqual('(0, 1) NORTH');
     });
   });
 });
