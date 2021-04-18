@@ -58,7 +58,7 @@ export class Rover {
       ];
   }
 
-  private move(moveDirection: Move): { x: number; y: number } {
+  private calculateNextPosition(moveDirection: Move): { x: number; y: number } {
     const move = {
       [Direction.NORTH]: { axis: Axis.Y, modifier: +1 },
       [Direction.SOUTH]: { axis: Axis.Y, modifier: -1 },
@@ -80,7 +80,7 @@ export class Rover {
     const turnCmd = Rotation[cmd];
 
     if (moveCmd) {
-      const newPosition = this.move(moveCmd);
+      const newPosition = this.calculateNextPosition(moveCmd);
 
       if (this.hasObstacle(newPosition)) {
         return `(${this.x}, ${this.y}) ${this.direction} STOPPED`;
