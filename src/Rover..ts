@@ -38,6 +38,12 @@ export class Rover {
     return this._direction;
   }
 
+  public execute(commandString: string): string {
+    const commands = commandString.split('');
+
+    return this.executeCommand(0, commands);
+  }
+
   private turn(rotation: Rotation): void {
     const directions: Direction[] = [
       Direction.NORTH,
@@ -90,12 +96,6 @@ export class Rover {
     } else {
       return `(${this.x}, ${this.y}) ${this.direction}`;
     }
-  }
-
-  public execute(commandString: string): string {
-    const commands = commandString.split('');
-
-    return this.executeCommand(0, commands);
   }
 
   private hasObstacle(position: Coordinate): boolean {
