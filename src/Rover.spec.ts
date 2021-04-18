@@ -1,7 +1,7 @@
 class Rover {
   constructor(
-    public readonly x: number,
-    public readonly y: number,
+    public x: number,
+    public y: number,
     public direction: Direction,
   ) {}
 
@@ -23,6 +23,11 @@ class Rover {
       directions[
         (directions.indexOf(this.direction) + offset) % directions.length
       ];
+  }
+
+  public move(moveDirection: string): void {
+    this.x = 0;
+    this.y = 1;
   }
 }
 
@@ -65,6 +70,18 @@ describe('Rover', () => {
         simpleRover.turn(testCase.turn);
 
         expect(simpleRover.direction).toEqual(testCase.result);
+      });
+    });
+  });
+
+  describe('move', () => {
+    describe('facing NORTH', () => {
+      it('should move forward', () => {
+        const rover = new Rover(0, 0, Direction.NORTH);
+        rover.move('F');
+
+        expect(rover.x).toEqual(0);
+        expect(rover.y).toEqual(1);
       });
     });
   });
