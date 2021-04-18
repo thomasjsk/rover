@@ -13,6 +13,7 @@ class Rover {
       },
       [Direction.SOUTH]: {
         [Rotation.R]: Direction.WEST,
+        [Rotation.L]: Direction.EAST,
       },
     };
 
@@ -73,6 +74,12 @@ describe('Rover', () => {
         simpleRover.turn(Rotation.R);
 
         expect(simpleRover.direction).toEqual(Direction.WEST);
+      });
+
+      it('left', () => {
+        simpleRover.turn(Rotation.L);
+
+        expect(simpleRover.direction).toEqual(Direction.EAST);
       });
     });
   });
