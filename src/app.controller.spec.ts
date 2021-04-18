@@ -29,5 +29,13 @@ describe('AppController', () => {
         appController.execute('FFRBL');
       }).toThrow();
     });
+
+    it('should return rover position after executing commands', () => {
+      appController.land(5, 8, Direction.WEST);
+
+      expect(() => {
+        appController.execute('FFRBL');
+      }).not.toThrow();
+    });
   });
 });
