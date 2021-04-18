@@ -16,5 +16,5 @@
         - SOUTH(0,0) + B => SOUTH(0, 1)
         - EAST(0,0) + F => EAST(1, 0)
         - EAST(0,0) + B => EAST(-1, 0)
-        - WEST(0,0) + F => WEST(-1, 0)
+        - WEST(0,0) + F => WEST(-1, 0) #
         - WEST(0,0) + B => WEST(1, 0)

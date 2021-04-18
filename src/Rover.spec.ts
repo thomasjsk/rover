@@ -54,12 +54,14 @@ class Rover {
   }
 
   public move(moveDirection: Move): void {
-    this.x = 0;
-    if (moveDirection === Move.F) {
-      this.y = 1;
-    } else {
-      this.y = -1;
-    }
+    const movingRules = {
+      [Direction.NORTH]: { axis: Axis.Y, modifier: +1 },
+      [Direction.WEST]: { axis: Axis.X, modifier: -1 },
+    };
+    const offset = { [Move.F]: +1, [Move.B]: -1 }[moveDirection];
+
+    const rule = movingRules[this.direction];
+    this[rule.axis] = this[rule.axis] + offset * rule.modifier;
   }
 }
 
@@ -78,6 +80,11 @@ enum Direction {
 enum Move {
   F = 'F',
   B = 'B',
+}
+
+enum Axis {
+  Y = 'y',
+  X = 'x',
 }
 
 describe('Rover', () => {
@@ -156,6 +163,11 @@ describe('Rover', () => {
         initialDirection: Direction.NORTH,
         moveDirection: Move.B,
         result: { x: 0, y: -1 },
+      },
+      {
+        initialDirection: Direction.WEST,
+        moveDirection: Move.F,
+        result: { x: -1, y: 0 },
       },
     ].forEach(({ initialDirection, moveDirection, result }) => {
       it(`should move ${moveDirection} facing ${initialDirection}`, () => {
