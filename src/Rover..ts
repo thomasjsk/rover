@@ -3,7 +3,12 @@ export class Rover {
   private _y: number;
   private _direction: Direction;
 
-  constructor(x: number, y: number, direction: Direction) {
+  constructor(
+    x: number,
+    y: number,
+    direction: Direction,
+    public readonly obstacles = [],
+  ) {
     this.x = x;
     this.y = y;
     this.direction = direction;
@@ -53,7 +58,7 @@ export class Rover {
       ];
   }
 
-  private move(moveDirection: Move): void {
+  private move(moveDirection: Move): { x: number; y: number } {
     const move = {
       [Direction.NORTH]: { axis: Axis.Y, modifier: +1 },
       [Direction.SOUTH]: { axis: Axis.Y, modifier: -1 },
@@ -62,24 +67,48 @@ export class Rover {
     }[this.direction];
     const offset = { [Move.F]: +1, [Move.B]: -1 }[moveDirection];
 
-    this[move.axis] = this[move.axis] + offset * move.modifier;
+    return {
+      x: this.x,
+      y: this.y,
+      [move.axis]: this[move.axis] + offset * move.modifier,
+    };
+  }
+
+  private executeCommand(commandIndex: number, commands: string[]) {
+    const cmd = commands[commandIndex];
+    const moveCmd = Move[cmd];
+    const turnCmd = Rotation[cmd];
+
+    if (moveCmd) {
+      const newPosition = this.move(moveCmd);
+
+      if (
+        this.obstacles.find(
+          ([x, y]) => x === newPosition.x && y === newPosition.y,
+        )
+      ) {
+        return `(${this.x}, ${this.y}) ${this.direction} STOPPED`;
+      }
+
+      this.x = newPosition.x;
+      this.y = newPosition.y;
+    }
+
+    if (turnCmd) {
+      this.turn(turnCmd);
+    }
+
+    if (commands[commandIndex + 1]) {
+      return this.executeCommand(commandIndex + 1, commands);
+    } else {
+      return `(${this.x}, ${this.y}) ${this.direction}`;
+    }
   }
 
   public execute(commandString: string): string {
-    commandString.split('').forEach((command) => {
-      const moveCmd = Move[command];
-      const turnCmd = Rotation[command];
+    const commands = commandString.split('');
 
-      if (moveCmd) {
-        this.move(moveCmd);
-      }
-
-      if (turnCmd) {
-        this.turn(turnCmd);
-      }
-    });
-
-    return `(${this.x}, ${this.y}) ${this.direction}`;
+    return this.executeCommand(0, commands);
   }
 }
 

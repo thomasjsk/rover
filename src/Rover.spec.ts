@@ -151,5 +151,13 @@ describe('Rover', () => {
 
       expect(rover.execute(commandString)).toEqual('(0, 1) NORTH');
     });
+
+    it('should stop before obstacle', () => {
+      const knownObstacles = [[0, 2]];
+      const rover = new Rover(0, 0, Direction.NORTH, knownObstacles);
+      const commandString = 'FF';
+
+      expect(rover.execute(commandString)).toEqual('(0, 1) NORTH STOPPED');
+    });
   });
 });

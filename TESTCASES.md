@@ -1,5 +1,5 @@
 - Rover
-    - should land on given coordination
+    - should land on given coordination #
     - should change direction
         - NORTH + R => EAST #
         - NORTH + L => WEST #
@@ -24,3 +24,4 @@
         - should execute single move command #
         - should execute single turn command #
         - should execute multiple multiple commands #
+        - should stop execution on an obstacle #
