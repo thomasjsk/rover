@@ -6,11 +6,17 @@ class Rover {
   ) {}
 
   public turn(rotation: Rotation): void {
-    if (rotation === Rotation.R) {
-      this.direction = Direction.EAST;
-    } else {
-      this.direction = Direction.WEST;
-    }
+    const rotations = {
+      [Direction.NORTH]: {
+        [Rotation.R]: Direction.EAST,
+        [Rotation.L]: Direction.WEST,
+      },
+      [Direction.SOUTH]: {
+        [Rotation.R]: Direction.WEST,
+      },
+    };
+
+    this.direction = rotations[this.direction][rotation];
   }
 }
 
@@ -53,6 +59,18 @@ describe('Rover', () => {
 
       it('right', () => {
         simpleRover.turn(Rotation.L);
+
+        expect(simpleRover.direction).toEqual(Direction.WEST);
+      });
+    });
+
+    describe('should turn from SOUTH', () => {
+      beforeEach(() => {
+        simpleRover = new Rover(0, 0, Direction.SOUTH);
+      });
+
+      it('right', () => {
+        simpleRover.turn(Rotation.R);
 
         expect(simpleRover.direction).toEqual(Direction.WEST);
       });
