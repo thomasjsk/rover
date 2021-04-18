@@ -1,0 +1,20 @@
+- Rover
+    - should land on given coordination
+    - should change direction
+        - NORTH + R => EAST 
+        - NORTH + L => WEST 
+        - SOUTH + R => WEST 
+        - SOUTH + L => EAST 
+        - EAST + R => SOUTH 
+        - EAST + L => NORTH 
+        - WEST + R => NORTH 
+        - WEST + L => NORTH
+    - should move
+        - NORTH(0,0) + F => NORTH(0, 1)
+        - NORTH(0,0) + B => NORTH(0, -1)
+        - SOUTH(0,0) + F => SOUTH(0, -1)
+        - SOUTH(0,0) + B => SOUTH(0, 1)
+        - EAST(0,0) + F => EAST(1, 0)
+        - EAST(0,0) + B => EAST(-1, 0)
+        - WEST(0,0) + F => WEST(-1, 0)
+        - WEST(0,0) + B => WEST(1, 0)
