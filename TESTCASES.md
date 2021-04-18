@@ -11,7 +11,7 @@
         - WEST + L => SOUTH #
     - should move
         - NORTH(0,0) + F => NORTH(0, 1) #
-        - NORTH(0,0) + B => NORTH(0, -1)
+        - NORTH(0,0) + B => NORTH(0, -1) #
         - SOUTH(0,0) + F => SOUTH(0, -1)
         - SOUTH(0,0) + B => SOUTH(0, 1)
         - EAST(0,0) + F => EAST(1, 0)

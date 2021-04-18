@@ -55,7 +55,11 @@ class Rover {
 
   public move(moveDirection: Move): void {
     this.x = 0;
-    this.y = 1;
+    if (moveDirection === Move.F) {
+      this.y = 1;
+    } else {
+      this.y = -1;
+    }
   }
 }
 
@@ -115,6 +119,14 @@ describe('Rover', () => {
 
         expect(rover.x).toEqual(0);
         expect(rover.y).toEqual(1);
+      });
+
+      it('should move backward', () => {
+        const rover = new Rover(0, 0, Direction.NORTH);
+        rover.move(Move.B);
+
+        expect(rover.x).toEqual(0);
+        expect(rover.y).toEqual(-1);
       });
     });
   });
