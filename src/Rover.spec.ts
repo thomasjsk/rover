@@ -57,7 +57,7 @@ describe('Rover', () => {
         expect(simpleRover.direction).toEqual(Direction.EAST);
       });
 
-      it('right', () => {
+      it('left', () => {
         simpleRover.turn(Rotation.L);
 
         expect(simpleRover.direction).toEqual(Direction.WEST);
