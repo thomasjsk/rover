@@ -49,19 +49,17 @@ describe('Rover', () => {
     });
   });
 
-  const turningCases = [
-    { initial: Direction.NORTH, turn: Rotation.R, result: Direction.EAST },
-    { initial: Direction.NORTH, turn: Rotation.L, result: Direction.WEST },
-    { initial: Direction.SOUTH, turn: Rotation.R, result: Direction.WEST },
-    { initial: Direction.SOUTH, turn: Rotation.L, result: Direction.EAST },
-    { initial: Direction.EAST, turn: Rotation.R, result: Direction.SOUTH },
-    { initial: Direction.EAST, turn: Rotation.L, result: Direction.NORTH },
-    { initial: Direction.WEST, turn: Rotation.R, result: Direction.NORTH },
-    { initial: Direction.WEST, turn: Rotation.L, result: Direction.SOUTH },
-  ];
-
   describe('change direction', () => {
-    turningCases.forEach((testCase) => {
+    [
+      { initial: Direction.NORTH, turn: Rotation.R, result: Direction.EAST },
+      { initial: Direction.NORTH, turn: Rotation.L, result: Direction.WEST },
+      { initial: Direction.SOUTH, turn: Rotation.R, result: Direction.WEST },
+      { initial: Direction.SOUTH, turn: Rotation.L, result: Direction.EAST },
+      { initial: Direction.EAST, turn: Rotation.R, result: Direction.SOUTH },
+      { initial: Direction.EAST, turn: Rotation.L, result: Direction.NORTH },
+      { initial: Direction.WEST, turn: Rotation.R, result: Direction.NORTH },
+      { initial: Direction.WEST, turn: Rotation.L, result: Direction.SOUTH },
+    ].forEach((testCase) => {
       it(`should turn from ${testCase.initial} -> ${testCase.turn}`, () => {
         const simpleRover = new Rover(0, 0, testCase.initial);
         simpleRover.turn(testCase.turn);
