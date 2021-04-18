@@ -66,16 +66,18 @@ class Rover {
   }
 
   public execute(commandString: string): string {
-    const moveCmd = Move[commandString];
-    const turnCmd = Rotation[commandString];
+    commandString.split('').forEach((command) => {
+      const moveCmd = Move[command];
+      const turnCmd = Rotation[command];
 
-    if (moveCmd) {
-      this.move(moveCmd);
-    }
+      if (moveCmd) {
+        this.move(moveCmd);
+      }
 
-    if (turnCmd) {
-      this.turn(turnCmd);
-    }
+      if (turnCmd) {
+        this.turn(turnCmd);
+      }
+    });
 
     return `(${this.x}, ${this.y}) ${this.direction}`;
   }
@@ -239,6 +241,13 @@ describe('Rover', () => {
       const commandString = 'L';
 
       expect(rover.execute(commandString)).toEqual('(0, 0) WEST');
+    });
+
+    it('should execute multiple commands', () => {
+      const rover = new Rover(0, 0, Direction.EAST);
+      const commandString = 'FLFRB';
+
+      expect(rover.execute(commandString)).toEqual('(0, 1) EAST');
     });
   });
 });
