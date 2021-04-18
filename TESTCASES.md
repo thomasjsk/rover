@@ -18,3 +18,7 @@
         - EAST(0,0) + B => EAST(-1, 0) #
         - WEST(0,0) + F => WEST(-1, 0) #
         - WEST(0,0) + B => WEST(1, 0) #
+    - execute command string
+        - should report position after execution
+        - should execute only valid command
+        - 
