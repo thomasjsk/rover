@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { RoverService } from './rover.service';
+import { Direction } from './models';
 
 describe('AppController', () => {
   let appController: AppController;
@@ -14,9 +15,11 @@ describe('AppController', () => {
     appController = app.get<AppController>(AppController);
   });
 
-  describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+  describe('POST /land', () => {
+    it('should return rover position after landing', () => {
+      expect(appController.land(5, 8, Direction.WEST)).toEqual(
+        'Rover landed on (5, 8) WEST',
+      );
     });
   });
 });
