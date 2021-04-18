@@ -25,7 +25,7 @@ class Rover {
       ];
   }
 
-  public move(moveDirection: string): void {
+  public move(moveDirection: Move): void {
     this.x = 0;
     this.y = 1;
   }
@@ -41,6 +41,11 @@ enum Direction {
   SOUTH = 'SOUTH',
   EAST = 'EAST',
   WEST = 'WEST',
+}
+
+enum Move {
+  F = 'F',
+  B = 'B',
 }
 
 describe('Rover', () => {
@@ -78,7 +83,7 @@ describe('Rover', () => {
     describe('facing NORTH', () => {
       it('should move forward', () => {
         const rover = new Rover(0, 0, Direction.NORTH);
-        rover.move('F');
+        rover.move(Move.F);
 
         expect(rover.x).toEqual(0);
         expect(rover.y).toEqual(1);
