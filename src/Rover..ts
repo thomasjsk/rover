@@ -98,17 +98,17 @@ export class Rover {
     return this.executeCommand(0, commands);
   }
 
-  private hasObstacle(position: { x: number; y: number }): boolean {
+  private hasObstacle(position: Coordinate): boolean {
     return Boolean(
       this.obstacles.find(([x, y]) => position.x === x && position.y === y),
     );
   }
 
   private static calculateNextPosition(
-    currentPosition: { x: number; y: number },
+    currentPosition: Coordinate,
     currentDirection: Direction,
     moveDirection: Move,
-  ): { x: number; y: number } {
+  ): Coordinate {
     const move = {
       [Direction.NORTH]: { axis: Axis.Y, modifier: +1 },
       [Direction.SOUTH]: { axis: Axis.Y, modifier: -1 },
@@ -123,6 +123,11 @@ export class Rover {
       [move.axis]: currentPosition[move.axis] + offset * move.modifier,
     };
   }
+}
+
+interface Coordinate {
+  x: number;
+  y: number;
 }
 
 export enum Rotation {
