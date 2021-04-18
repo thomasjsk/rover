@@ -15,6 +15,9 @@ class Rover {
         [Rotation.R]: Direction.WEST,
         [Rotation.L]: Direction.EAST,
       },
+      [Direction.EAST]: {
+        [Rotation.R]: Direction.SOUTH,
+      },
     };
 
     this.direction = rotations[this.direction][rotation];
@@ -49,6 +52,7 @@ describe('Rover', () => {
     { initial: Direction.NORTH, turn: Rotation.L, result: Direction.WEST },
     { initial: Direction.SOUTH, turn: Rotation.R, result: Direction.WEST },
     { initial: Direction.SOUTH, turn: Rotation.L, result: Direction.EAST },
+    { initial: Direction.EAST, turn: Rotation.R, result: Direction.SOUTH },
   ];
 
   describe('change direction', () => {
