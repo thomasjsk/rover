@@ -58,29 +58,20 @@ export class Rover {
       ];
   }
 
-  private calculateNextPosition(moveDirection: Move): { x: number; y: number } {
-    const move = {
-      [Direction.NORTH]: { axis: Axis.Y, modifier: +1 },
-      [Direction.SOUTH]: { axis: Axis.Y, modifier: -1 },
-      [Direction.EAST]: { axis: Axis.X, modifier: +1 },
-      [Direction.WEST]: { axis: Axis.X, modifier: -1 },
-    }[this.direction];
-    const offset = { [Move.F]: +1, [Move.B]: -1 }[moveDirection];
-
-    return {
-      x: this.x,
-      y: this.y,
-      [move.axis]: this[move.axis] + offset * move.modifier,
-    };
-  }
-
   private executeCommand(commandIndex: number, commands: string[]) {
     const cmd = commands[commandIndex];
     const moveCmd = Move[cmd];
     const turnCmd = Rotation[cmd];
 
     if (moveCmd) {
-      const newPosition = this.calculateNextPosition(moveCmd);
+      const newPosition = Rover.calculateNextPosition(
+        {
+          x: this.x,
+          y: this.y,
+        },
+        this.direction,
+        moveCmd,
+      );
 
       if (this.hasObstacle(newPosition)) {
         return `(${this.x}, ${this.y}) ${this.direction} STOPPED`;
@@ -111,6 +102,26 @@ export class Rover {
     return Boolean(
       this.obstacles.find(([x, y]) => position.x === x && position.y === y),
     );
+  }
+
+  private static calculateNextPosition(
+    currentPosition: { x: number; y: number },
+    currentDirection: Direction,
+    moveDirection: Move,
+  ): { x: number; y: number } {
+    const move = {
+      [Direction.NORTH]: { axis: Axis.Y, modifier: +1 },
+      [Direction.SOUTH]: { axis: Axis.Y, modifier: -1 },
+      [Direction.EAST]: { axis: Axis.X, modifier: +1 },
+      [Direction.WEST]: { axis: Axis.X, modifier: -1 },
+    }[currentDirection];
+    const offset = { [Move.F]: +1, [Move.B]: -1 }[moveDirection];
+
+    return {
+      x: currentPosition.x,
+      y: currentPosition.y,
+      [move.axis]: currentPosition[move.axis] + offset * move.modifier,
+    };
   }
 }
 
