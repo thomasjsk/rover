@@ -5,13 +5,18 @@ class Rover {
     public direction: string,
   ) {}
 
-  public turn(rotation: string): void {
-    if (rotation === 'R') {
+  public turn(rotation: Rotation): void {
+    if (rotation === Rotation.R) {
       this.direction = Direction.EAST;
     } else {
       this.direction = Direction.WEST;
     }
   }
+}
+
+enum Rotation {
+  R = 'R',
+  L = 'L',
 }
 
 enum Direction {
@@ -36,14 +41,14 @@ describe('Rover', () => {
     describe('should turn from NORTH', () => {
       it('right', () => {
         const rover = new Rover(0, 0, Direction.NORTH);
-        rover.turn('R');
+        rover.turn(Rotation.R);
 
         expect(rover.direction).toEqual(Direction.EAST);
       });
 
       it('right', () => {
         const rover = new Rover(0, 0, Direction.NORTH);
-        rover.turn('L');
+        rover.turn(Rotation.L);
 
         expect(rover.direction).toEqual(Direction.WEST);
       });
