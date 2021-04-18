@@ -39,9 +39,7 @@ export class Rover {
   }
 
   public execute(commandString: string): string {
-    const commands = commandString.split('');
-
-    return this.executeCommand(0, commands);
+    return this.executeCommand(commandString.split(''));
   }
 
   private turn(rotation: Rotation): void {
@@ -64,8 +62,8 @@ export class Rover {
       ];
   }
 
-  private executeCommand(commandIndex: number, commands: string[]) {
-    const cmd = commands[commandIndex];
+  private executeCommand(commands: string[]) {
+    const cmd = commands[0];
     const moveCmd = Move[cmd];
     const turnCmd = Rotation[cmd];
 
@@ -88,14 +86,15 @@ export class Rover {
     }
 
     if (turnCmd) {
-      this.turn(turnCmd);
+      turnCmd && this.turn(turnCmd);
     }
 
-    if (commands[commandIndex + 1]) {
-      return this.executeCommand(commandIndex + 1, commands);
-    } else {
-      return `(${this.x}, ${this.y}) ${this.direction}`;
+    const remainingCommands = commands.slice(1, commands.length);
+    if (remainingCommands.length) {
+      return this.executeCommand(remainingCommands);
     }
+
+    return `(${this.x}, ${this.y}) ${this.direction}`;
   }
 
   private hasObstacle(position: Coordinate): boolean {
