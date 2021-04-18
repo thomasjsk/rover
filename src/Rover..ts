@@ -1,3 +1,5 @@
+import { Coordinate } from './models';
+
 export class Rover {
   private _x: number;
   private _y: number;
@@ -122,11 +124,6 @@ export class Rover {
       [move.axis]: currentPosition[move.axis] + offset * move.modifier,
     };
   }
-}
-
-interface Coordinate {
-  x: number;
-  y: number;
 }
 
 export enum Rotation {
