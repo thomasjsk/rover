@@ -38,19 +38,23 @@ describe('Rover', () => {
   });
 
   describe('change direction', () => {
-    describe('should turn from NORTH', () => {
-      it('right', () => {
-        const rover = new Rover(0, 0, Direction.NORTH);
-        rover.turn(Rotation.R);
+    let simpleRover: Rover;
 
-        expect(rover.direction).toEqual(Direction.EAST);
+    describe('should turn from NORTH', () => {
+      beforeEach(() => {
+        simpleRover = new Rover(0, 0, Direction.NORTH);
       });
 
       it('right', () => {
-        const rover = new Rover(0, 0, Direction.NORTH);
-        rover.turn(Rotation.L);
+        simpleRover.turn(Rotation.R);
 
-        expect(rover.direction).toEqual(Direction.WEST);
+        expect(simpleRover.direction).toEqual(Direction.EAST);
+      });
+
+      it('right', () => {
+        simpleRover.turn(Rotation.L);
+
+        expect(simpleRover.direction).toEqual(Direction.WEST);
       });
     });
   });
