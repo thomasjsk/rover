@@ -44,42 +44,20 @@ describe('Rover', () => {
     });
   });
 
+  const expectedTurningResults = [
+    { initial: Direction.NORTH, turn: Rotation.R, result: Direction.EAST },
+    { initial: Direction.NORTH, turn: Rotation.L, result: Direction.WEST },
+    { initial: Direction.SOUTH, turn: Rotation.R, result: Direction.WEST },
+    { initial: Direction.SOUTH, turn: Rotation.L, result: Direction.EAST },
+  ];
+
   describe('change direction', () => {
-    let simpleRover: Rover;
+    expectedTurningResults.forEach((testCase) => {
+      it(`should turn from ${testCase.initial} -> ${testCase.turn}`, () => {
+        const simpleRover = new Rover(0, 0, testCase.initial);
+        simpleRover.turn(testCase.turn);
 
-    describe('should turn from NORTH', () => {
-      beforeEach(() => {
-        simpleRover = new Rover(0, 0, Direction.NORTH);
-      });
-
-      it('right', () => {
-        simpleRover.turn(Rotation.R);
-
-        expect(simpleRover.direction).toEqual(Direction.EAST);
-      });
-
-      it('left', () => {
-        simpleRover.turn(Rotation.L);
-
-        expect(simpleRover.direction).toEqual(Direction.WEST);
-      });
-    });
-
-    describe('should turn from SOUTH', () => {
-      beforeEach(() => {
-        simpleRover = new Rover(0, 0, Direction.SOUTH);
-      });
-
-      it('right', () => {
-        simpleRover.turn(Rotation.R);
-
-        expect(simpleRover.direction).toEqual(Direction.WEST);
-      });
-
-      it('left', () => {
-        simpleRover.turn(Rotation.L);
-
-        expect(simpleRover.direction).toEqual(Direction.EAST);
+        expect(simpleRover.direction).toEqual(testCase.result);
       });
     });
   });
