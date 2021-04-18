@@ -1,5 +1,6 @@
-import { Coordinate } from './models';
-import { Rotation } from './Rotation';
+import { Coordinate } from "./models";
+import { Rotation } from "./Rotation";
+import { Direction } from "./Direction";
 
 export class Rover {
   private _x: number;
@@ -125,13 +126,6 @@ export class Rover {
       [move.axis]: currentPosition[move.axis] + offset * move.modifier,
     };
   }
-}
-
-export enum Direction {
-  NORTH = 'NORTH',
-  SOUTH = 'SOUTH',
-  EAST = 'EAST',
-  WEST = 'WEST',
 }
 
 export enum Move {
