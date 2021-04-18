@@ -180,6 +180,11 @@ describe('Rover', () => {
         moveDirection: Move.F,
         result: { x: 0, y: -1 },
       },
+      {
+        initialDirection: Direction.SOUTH,
+        moveDirection: Move.B,
+        result: { x: 0, y: 1 },
+      },
     ].forEach(({ initialDirection, moveDirection, result }) => {
       it(`should move ${moveDirection} facing ${initialDirection}`, () => {
         const rover = new Rover(
