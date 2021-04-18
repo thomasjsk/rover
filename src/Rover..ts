@@ -1,7 +1,8 @@
-import { Coordinate } from './models';
-import { Rotation } from './Rotation';
-import { Direction } from './Direction';
-import { Move } from './Move';
+import { Coordinate } from "./models";
+import { Rotation } from "./Rotation";
+import { Direction } from "./Direction";
+import { Move } from "./Move";
+import { Axis } from "./Axis";
 
 export class Rover {
   private _x: number;
@@ -129,7 +130,3 @@ export class Rover {
   }
 }
 
-enum Axis {
-  Y = 'y',
-  X = 'x',
-}
