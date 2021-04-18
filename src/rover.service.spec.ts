@@ -20,4 +20,13 @@ describe('ClientsService', () => {
     expect(service.rover.y).toEqual(2);
     expect(service.rover.direction).toEqual(Direction.NORTH);
   });
+
+  it('should land rover only once', () => {
+    service.land(1, 2, Direction.NORTH);
+    service.land(5, 8, Direction.WEST);
+
+    expect(service.rover.x).toEqual(1);
+    expect(service.rover.y).toEqual(2);
+    expect(service.rover.direction).toEqual(Direction.NORTH);
+  });
 });

@@ -14,8 +14,10 @@ export class RoverService {
   }
 
   land(x: number, y: number, direction: Direction) {
-    this._rover = new Rover(x, y, direction);
+    if (!this.rover) {
+      this._rover = new Rover(x, y, direction);
+    }
 
-    return this._rover;
+    return this.rover;
   }
 }
