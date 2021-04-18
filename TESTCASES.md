@@ -21,4 +21,5 @@
     - execute command string
         - should report position after execution
         - should execute only valid command
-        - 
+        - should execute single move command #
+        - should execute single turn command #
