@@ -1,0 +1,92 @@
+{
+	"info": {
+		"_postman_id": "f7d0eca7-36f3-4178-9ff4-1311cd237db0",
+		"name": "ROVER",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "LAND",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "x",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "y",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "direction",
+							"value": "EAST",
+							"type": "text"
+						},
+						{
+							"key": "knownObstacles[]",
+							"value": "[{x: 2, y: 0}]",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/land",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"land"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EXECUTE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "command",
+							"value": "FFF",
+							"type": "text"
+						},
+						{
+							"key": "y",
+							"value": "0",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "direction",
+							"value": "EAST",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/execute",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"execute"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
