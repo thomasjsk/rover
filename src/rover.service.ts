@@ -9,10 +9,13 @@ export class RoverService {
     return this._rover;
   }
 
-  land(x: number, y: number, direction: Direction) {
-    if (!this.rover) {
-      this._rover = new Rover(x, y, direction);
-    }
+  land(
+    x: number,
+    y: number,
+    direction: Direction,
+    knownObstacles: number[][] = [],
+  ) {
+    this._rover = new Rover(x, y, direction, knownObstacles);
 
     return this.rover;
   }
@@ -23,5 +26,15 @@ export class RoverService {
     }
 
     return this.rover.execute(commandString);
+  }
+
+  parseObstaclesData(obstaclesData: string): number[][] {
+    try {
+      return JSON.parse(obstaclesData).map((obstacleCoord: string[]) =>
+        obstacleCoord.map(Number),
+      );
+    } catch (e) {
+      return [];
+    }
   }
 }
