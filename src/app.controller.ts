@@ -8,17 +8,26 @@ export class AppController {
 
   @Post('land')
   land(
-    @Body() x: number,
-    @Body() y: number,
-    @Body() direction: Direction,
+    @Body()
+    position: {
+      x: number;
+      y: number;
+      direction: Direction;
+      knownObstacles?: string;
+    },
   ): string {
-    const rover = this.roverService.land(x, y, direction);
+    const rover = this.roverService.land(
+      +position.x,
+      +position.y,
+      position.direction,
+      this.roverService.parseObstaclesData(position.knownObstacles),
+    );
 
     return `Rover landed on (${rover.x}, ${rover.y}) ${rover.direction}`;
   }
 
   @Post('execute')
-  execute(@Body() command: string): string | HttpException {
-    return this.roverService.execute(command);
+  execute(@Body() executeBody: { command: string }): string | HttpException {
+    return this.roverService.execute(executeBody.command);
   }
 }

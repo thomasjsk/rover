@@ -17,24 +17,24 @@ describe('AppController', () => {
 
   describe('POST /land', () => {
     it('should return rover position after landing', () => {
-      expect(appController.land(5, 8, Direction.WEST)).toEqual(
-        'Rover landed on (5, 8) WEST',
-      );
+      expect(
+        appController.land({ x: 5, y: 8, direction: Direction.WEST }),
+      ).toEqual('Rover landed on (5, 8) WEST');
     });
   });
 
   describe('POST /execute', () => {
     it('should return exception if rover has not landed yet', () => {
       expect(() => {
-        appController.execute('FFRBL');
+        appController.execute({ command: 'FFRBL' });
       }).toThrow();
     });
 
     it('should return rover position after executing commands', () => {
-      appController.land(5, 8, Direction.WEST);
+      appController.land({ x: 5, y: 8, direction: Direction.WEST });
 
       expect(() => {
-        appController.execute('FFRBL');
+        appController.execute({ command: 'FFRBL' });
       }).not.toThrow();
     });
   });
